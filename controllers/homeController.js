@@ -22,27 +22,10 @@ const homeController = {
       broadcastCap
     } = req.body;
 
-
-
-    const hexToBinary = (s) => {
-
-      let lookup = {
-        '0': '0000',    
-        '0': '0000',        '1': '0001',        '2': '0010',        '3': '0011',        '4': '0100',        '5': '0101',
-        '6': '0110',        '7': '0111',        '8': '1000',        '9': '1001',        'a': '1010',        'b': '1011',
-        'c': '1100',        'd': '1101',        'e': '1110',        'f': '1111',        'A': '1010',        'B': '1011',
-        'C': '1100',        'D': '1101',        'E': '1110',        'F': '1111'
-      };
-
-      let ret = '';
-      for (let i = 0; i < s.length ; i++) {
-        ret += lookup[s[i]];
-      }
-      return ret;
-    }
-
-    const BinayToHex = (number) => {
-      return parseInt(number, 2).toString(16).toUpperCase();
+    //Pre-processa aliveStaticStatetimer 
+    let tempVar = parseInt(aliveStaticStateTimer,10)
+    if(tempVar != 0){
+        aliveStaticStateTimer = (tempVar/3).toString();
     }
 
     //Montagem dos bytes
@@ -64,8 +47,8 @@ const homeController = {
       let byte5_1_1 = parseInt(stopDetectionWindow,10).toString(2);
       let byte5_1_2 = parseInt(stopDetectionThreshold,10).toString(2) ;
     
-      if(byte5_1_1.length != 2){ byte5_1_1 = "0"+byte5_1_1};
-      if(byte5_1_2.length != 2){ byte5_1_2 = "0"+byte5_1_2};
+      if(byte5_1_1.length != 2){ byte5_1_1 = "0"+ byte5_1_1};
+      if(byte5_1_2.length != 2){ byte5_1_2 = "0"+ byte5_1_2};
     
     
     let byte5_1 = (parseInt((byte5_1_1 + byte5_1_2),2).toString(16));
